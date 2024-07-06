@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return  ProductResource::collection($this->product->with('categories')->paginate(5));
+        return  ProductResource::collection($this->product->latest()->with('categories')->paginate(5));
 
         // ->map(function($product){
         //     $product->append('price_float');

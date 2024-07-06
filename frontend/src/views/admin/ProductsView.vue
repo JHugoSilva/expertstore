@@ -3,8 +3,8 @@
   {{ products }}
 </template>
 <script>
-import HttpClient from '@/services/HttpClient.js'
-import Storage from '@/services/Storage.js'
+import HttpClient from '@/services/http-client.js'
+import Storage from '@/services/storage.js'
 
 export default {
   data() {
@@ -15,7 +15,7 @@ export default {
   methods: {
     logout() {
       HttpClient.delete('/logout').then(() => {
-        Storage.remove('token')
+        Storage.remove('auth')
         location.href = '/auth/login'
       })
     }

@@ -6,7 +6,7 @@
           <label for="email" class="block mb-3">Email</label>
           <input
             type="email"
-            v-model="credentials.email"
+            v-model="form.email"
             placeholder="Seu email..."
             class="w-full rounded outline-none border border-gray-300 p-2 focus:border-gray-900 focus:ring transition duration-300 ease-in-out"
             id="email"
@@ -16,7 +16,7 @@
           <label for="password" class="block mb-3"></label>
           <input
             type="password"
-            v-model="credentials.password"
+            v-model="form.password"
             placeholder="Sua Senha..."
             class="w-full rounded outline-none border border-gray-300 p-2 focus:border-gray-900 focus:ring transition duration-300 ease-in-out"
             id="password"
@@ -32,26 +32,39 @@
     </div>
   </div>
 </template>
-<script>
-import HttpClient from '@/services/HttpClient.js'
-import Storage from '@/services/Storage.js'
-export default {
-  data() {
-    return {
-      credentials: {
-        email: 'admin@admin.com',
-        password: 'password'
-      }
-    }
-  },
-  methods: {
-    login() {
-      HttpClient.post('/login', this.credentials).then((response) => {
-        Storage.set('token', response.data.data.token)
-        // this.$router.push({ name: 'admin.products' })
-        location.href = '/admin/products'
-      })
-    }
-  }
+<script setup>
+import { ref } from 'vue'
+import { useAuth } from '@/stores/auth'
+
+const auth = useAuth()
+const form = ref({
+  email: 'admin@admin.com',
+  password: 'password'
+})
+
+const login = () => {
+  auth.login(form.value)
 }
+
+// import HttpClient from '@/services/http-client.js'
+// import Storage from '@/services/storage.js'
+// export default {
+//   data() {
+//     return {
+//       credentials: {
+//         email: 'admin@admin.com',
+//         password: 'password'
+//       }
+//     }
+//   },
+//   methods: {
+//     login() {
+//       HttpClient.post('/login', this.credentials).then((response) => {
+//         Storage.set('token', response.data.data.token)
+//         // this.$router.push({ name: 'admin.products' })
+//         location.href = '/admin/products'
+//       })
+//     }
+//   }
+// }
 </script>
