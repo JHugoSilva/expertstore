@@ -8,6 +8,7 @@ import httpClient from './services/http-client'
 import App from './App.vue'
 import router from './router'
 
+httpClient.setInterceptor()
 const auth = JSON.parse(localStorage.getItem('auth'))
 
 if (auth) {

@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto">
+  <!-- <div class="max-w-7xl mx-auto">
     <header>
       <div class="w-full mb-6">
         <nav class="flex">
@@ -11,10 +11,10 @@
           <router-link to="/about">About</router-link>
         </nav>
       </div>
-    </header>
-  
-    <router-view />
-  </div>
+    </header> -->
+
+  <router-view />
+  <!-- </div> -->
 </template>
 
 <style scoped>

@@ -33,8 +33,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+        ]);
+        if ($request->validated()) {
+            return Product::create($request->all());
+        }
         // if (!$request->user()->tokenCan('server:store')) abort(401, 'Unauthorized');
-        return Product::create($request->all());
     }
 
     /**

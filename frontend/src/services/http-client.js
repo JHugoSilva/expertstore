@@ -15,6 +15,7 @@ const httpClient = {
         return response
       },
       (error) => {
+        console.log('AYU', error)
         if (error.response.status === 401) {
           storage.remove('auth')
           location.href = '/auth/login'
